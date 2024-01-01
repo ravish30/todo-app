@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './dto/user.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserDocument, Users } from './schema/user.schema';
 import { Model } from 'mongoose';
+import { TodoList, TodoListDocument } from './schema/todo.schema';
+import { TodoLists } from './dto/todo.dto';
 
 @Injectable()
-export class UserService {
+export class TodoListService {
   constructor(
-    @InjectModel(Users.name) private userModel: Model<UserDocument>,
+    @InjectModel(TodoList.name) private todoListModel: Model<TodoListDocument>,
   ) {}
 
-  async loginUser(user: User) {
-    if (!user.email || !user.password) {
+  async createTodo(todo: TodoLists) {
+    if (!todo.email || !todo) {
       return { success: false, message: 'All field are mandatory' };
     }
     const existingUser = await this.userModel.findOne({ email: user.email });
@@ -26,7 +26,7 @@ export class UserService {
     return { success: true, message: 'Login Successful', data: existingUser };
   }
 
-  async registerUser(user: User) {
+  async getTodoListOfUser(todo: TodoLists) {
     if (!user.name || !user.email || !user.password) {
       return { success: false, message: 'All field are mandatory' };
     }
