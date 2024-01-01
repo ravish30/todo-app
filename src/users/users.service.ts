@@ -16,7 +16,7 @@ export class UserService {
     }
     const existingUser = await this.userModel.findOne({ email: user.email });
     if (!existingUser) {
-      return { success: true, message: 'User Does Not Exist' };
+      return { success: false, message: 'User Does Not Exist' };
     }
 
     return { success: true, message: 'Login Successfull', data: existingUser };
@@ -28,7 +28,7 @@ export class UserService {
     }
     const existingUser = await this.userModel.findOne({ email: user.email });
     if (existingUser) {
-      return { success: true, message: 'User Already Exists' };
+      return { success: false, message: 'User Already Exists' };
     }
 
     const createUser = new this.userModel(user);
