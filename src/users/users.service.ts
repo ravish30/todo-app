@@ -19,7 +19,7 @@ export class UserService {
       return { success: false, message: 'User Does Not Exist' };
     }
 
-    if(existingUser.password != user.password) {
+    if (existingUser.password != user.password) {
       return { success: false, message: 'Password Does not Match' };
     }
 
@@ -37,6 +37,10 @@ export class UserService {
 
     const createUser = new this.userModel(user);
     const data = await createUser.save();
-    return { success: true, message: 'Registered Successfully, Please Login', data: data };
+    return {
+      success: true,
+      message: 'Registered Successfully, Please Login',
+      data: data,
+    };
   }
 }

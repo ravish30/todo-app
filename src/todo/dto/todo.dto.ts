@@ -1,5 +1,4 @@
 export class TodoLists {
-    email: string;
-    todos: string[];
-  }
-  
+  email: string;
+  todo: string;
+}
