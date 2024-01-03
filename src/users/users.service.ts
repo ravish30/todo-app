@@ -19,7 +19,11 @@ export class UserService {
       return { success: false, message: 'User Does Not Exist' };
     }
 
-    return { success: true, message: 'Login Successfull', data: existingUser };
+    if (existingUser.password != user.password) {
+      return { success: false, message: 'Password Does not Match' };
+    }
+
+    return { success: true, message: 'Login Successful', data: existingUser };
   }
 
   async registerUser(user: User) {
@@ -33,6 +37,10 @@ export class UserService {
 
     const createUser = new this.userModel(user);
     const data = await createUser.save();
-    return { success: true, message: 'User Created Successfully', data: data };
+    return {
+      success: true,
+      message: 'Registered Successfully, Please Login',
+      data: data,
+    };
   }
 }
