@@ -9,20 +9,20 @@ export class TodoListService {
     @InjectModel(TodoList.name) private todoListModel: Model<TodoListDocument>,
   ) {}
 
-  async createTodo(email: string, todo: string) {
-    if (!email) {
-      return { success: false, message: 'Email is Required' };
+  async createTodo(userId: string, todo: string) {
+    if (!userId) {
+      return { success: false, message: 'userId is Required' };
     }
-    const createTodo = new this.todoListModel({ email, todo });
+    const createTodo = new this.todoListModel({ userId: userId, todo });
     const data = createTodo.save();
     return { success: true, message: 'Todo Added Successfully', data };
   }
 
-  async getTodoListOfUser(email: string) {
-    if (!email) {
-      return { success: false, message: 'Email is Required' };
+  async getTodoListOfUser(userId: string) {
+    if (!userId) {
+      return { success: false, message: 'userId is Required' };
     }
-    const userTodos = await this.todoListModel.find({ email: email });
+    const userTodos = await this.todoListModel.find({ userId: userId });
 
     return { success: true, message: 'Fetched Successfully', data: userTodos };
   }

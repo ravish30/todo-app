@@ -1,4 +1,4 @@
 export class TodoLists {
-  email: string;
+  userId: string;
   todo: string;
 }

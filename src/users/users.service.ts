@@ -23,7 +23,7 @@ export class UserService {
       return { success: false, message: 'Password Does not Match' };
     }
 
-    return { success: true, message: 'Login Successful', data: existingUser };
+    return { success: true, message: 'Login Successful', token: existingUser._id.toString() };
   }
 
   async registerUser(user: User) {

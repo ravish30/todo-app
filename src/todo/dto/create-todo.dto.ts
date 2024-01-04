@@ -1,3 +1,3 @@
 export class EmailParamDto {
-  email: string;
+  userId: string;
 }

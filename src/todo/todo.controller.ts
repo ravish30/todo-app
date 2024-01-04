@@ -12,13 +12,13 @@ export class TodoListController {
     @Body() createTodoBodyDto: CreateTodoBody,
   ) {
     return this.todoService.createTodo(
-      emailParamDto.email,
+      emailParamDto.userId,
       createTodoBodyDto.todo,
     );
   }
 
   @Get('getAllTodosOfUser')
   getTodoListOfUser(@Query() emailParamDto: EmailParamDto) {
-    return this.todoService.getTodoListOfUser(emailParamDto.email);
+    return this.todoService.getTodoListOfUser(emailParamDto.userId);
   }
 }
